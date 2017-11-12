@@ -224,7 +224,7 @@ func (qc *QemuContext) Pause(ctx *hypervisor.VmContext, pause bool) error {
 	return <-result
 }
 
-func (qc *QemuContext) AddDisk(ctx *hypervisor.VmContext, sourceType string, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
+func (qc *QemuContext) AddDisk(ctx *hypervisor.VmContext, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
 	filename := blockInfo.Filename
 	format := blockInfo.Format
 	id := blockInfo.ScsiId

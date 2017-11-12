@@ -81,14 +81,10 @@ func (dc *DiskContext) insert(result chan api.Result) {
 	}
 
 	dc.ScsiId = dc.sandbox.nextScsiId()
-	usage := "volume"
-	if dc.isRootVol {
-		usage = "image"
-	}
 
 	go func() {
 		r := make(chan VmEvent, 4)
-		dc.sandbox.DCtx.AddDisk(dc.sandbox, usage, dc.DiskDescriptor, r)
+		dc.sandbox.DCtx.AddDisk(dc.sandbox, dc.DiskDescriptor, r)
 
 		ev, ok := <-r
 		if !ok {

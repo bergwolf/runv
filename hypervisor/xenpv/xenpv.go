@@ -203,7 +203,7 @@ func xvdId2Name(id int) string {
 	return "xvd" + utils.DiskId2Name(id)
 }
 
-func (xc *XenPvContext) AddDisk(ctx *hypervisor.VmContext, sourceType string, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
+func (xc *XenPvContext) AddDisk(ctx *hypervisor.VmContext, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
 	if blockInfo.Format == "rbd" {
 		result <- &hypervisor.DeviceFailed{
 			Session: nil,

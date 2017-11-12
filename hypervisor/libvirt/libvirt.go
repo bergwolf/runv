@@ -908,7 +908,7 @@ func scsiId2Addr(id int) (int, int, error) {
 	return id / 256, id % 256, nil
 }
 
-func (lc *LibvirtContext) AddDisk(ctx *hypervisor.VmContext, sourceType string, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
+func (lc *LibvirtContext) AddDisk(ctx *hypervisor.VmContext, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
 	if lc.domain == nil {
 		glog.Error("Cannot find domain")
 		result <- &hypervisor.DeviceFailed{

@@ -70,7 +70,7 @@ type DriverContext interface {
 	Associate(ctx *VmContext)
 	Dump() (map[string]interface{}, error)
 
-	AddDisk(ctx *VmContext, sourceType string, blockInfo *DiskDescriptor, result chan<- VmEvent)
+	AddDisk(ctx *VmContext, blockInfo *DiskDescriptor, result chan<- VmEvent)
 	RemoveDisk(ctx *VmContext, blockInfo *DiskDescriptor, callback VmEvent, result chan<- VmEvent)
 
 	AddNic(ctx *VmContext, host *HostNicInfo, guest *GuestNicInfo, result chan<- VmEvent)
@@ -102,7 +102,7 @@ type LazyDriverContext interface {
 
 	LazyLaunch(ctx *VmContext)
 	InitVM(ctx *VmContext) error
-	LazyAddDisk(ctx *VmContext, name, sourceType, filename, format string, id int)
+	LazyAddDisk(ctx *VmContext, name, filename, format string, id int)
 	LazyAddNic(ctx *VmContext, host *HostNicInfo, guest *GuestNicInfo)
 }
 
@@ -145,7 +145,7 @@ func (ec *EmptyContext) Dump() (map[string]interface{}, error) {
 	return map[string]interface{}{"hypervisor": "empty"}, nil
 }
 
-func (ec *EmptyContext) AddDisk(ctx *VmContext, sourceType string, blockInfo *DiskDescriptor, result chan<- VmEvent) {
+func (ec *EmptyContext) AddDisk(ctx *VmContext, blockInfo *DiskDescriptor, result chan<- VmEvent) {
 }
 
 func (ec *EmptyContext) RemoveDisk(ctx *VmContext, blockInfo *DiskDescriptor, callback VmEvent, result chan<- VmEvent) {

@@ -217,12 +217,12 @@ func (xc *XenContext) Stats(ctx *hypervisor.VmContext) (*types.PodStats, error) 
 
 func (xc *XenContext) Close() {}
 
-func (xc *XenContext) AddDisk(ctx *hypervisor.VmContext, sourceType string, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
+func (xc *XenContext) AddDisk(ctx *hypervisor.VmContext, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
 	filename := blockInfo.Filename
 	format := blockInfo.Format
 	id := blockInfo.ScsiId
 
-	go diskRoutine(true, xc, ctx, sourceType, filename, format, id, nil, result)
+	go diskRoutine(true, xc, ctx, filename, format, id, nil, result)
 }
 
 func (xc *XenContext) RemoveDisk(ctx *hypervisor.VmContext, blockInfo *hypervisor.DiskDescriptor, callback hypervisor.VmEvent, result chan<- hypervisor.VmEvent) {
@@ -302,7 +302,7 @@ func (xd *XenDriver) SupportVmSocket() bool {
 }
 
 func diskRoutine(add bool, xc *XenContext, ctx *hypervisor.VmContext,
-	sourceType, filename, format string, id int, callback hypervisor.VmEvent, result chan<- hypervisor.VmEvent) {
+	filename, format string, id int, callback hypervisor.VmEvent, result chan<- hypervisor.VmEvent) {
 	backend := LIBXL_DISK_BACKEND_TAP
 	if strings.HasPrefix(filename, "/dev/") {
 		backend = LIBXL_DISK_BACKEND_PHY

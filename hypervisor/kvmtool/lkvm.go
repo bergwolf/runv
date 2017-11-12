@@ -395,7 +395,7 @@ func scsiId2Name(id int) string {
 	return "vd" + utils.DiskId2Name(id)
 }
 
-func (kc *KvmtoolContext) AddDisk(ctx *hypervisor.VmContext, sourceType string, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
+func (kc *KvmtoolContext) AddDisk(ctx *hypervisor.VmContext, blockInfo *hypervisor.DiskDescriptor, result chan<- hypervisor.VmEvent) {
 	result <- &hypervisor.BlockdevInsertedEvent{
 		DeviceName: scsiId2Name(blockInfo.ScsiId),
 	}
