@@ -17,9 +17,9 @@
 			"Rev": "880a395a3f5d046d8487793e4901ef791fefedd1"
 		},
 		{
-			"ImportPath": "github.com/Sirupsen/logrus",
-			"Comment": "v0.11.4",
-			"Rev": "0208149b40d863d2c1a2f8fe5753096a9cf2cc8b"
+			"ImportPath": "github.com/sirupsen/logrus",
+			"Comment": "v1.0.3-11-g89742ae",
+			"Rev": "89742aefa4b206dcf400792f3bd35b542998eb3b"
 		},
 		{
 			"ImportPath": "github.com/cloudfoundry/gosigar",
@@ -288,6 +288,10 @@
 			"ImportPath": "google.golang.org/grpc/transport",
 			"Comment": "v1.0.5-99-g4eaacfe",
 			"Rev": "4eaacfed9779ee7568c9e72e9f763dbd3af8e0b4"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ssh/terminal",
+			"Rev": "ca1fcd4ab4c10bc58852a894bcf195fab2229efe"
 		}
 	]
 }
